@@ -7,6 +7,20 @@ utilizar pandas, numpy o scipy.
 
 
 def pregunta_07():
+    x7=open('files/input/data.csv').readlines()
+    x7=[z.replace('\n','') for z in x7[0:]]
+    x7=[z.replace('\t',',') for z in x7[0:]]
+    x7=[z.split(',') for z in x7[0:]]
+    key=[int(z[1]) for z in x7[0:]]
+    value=[(z[0]) for z in x7[0:]]
+    dic={}
+    for k,v in zip(key,value):
+        if k in dic:
+            dic[k].append(v)
+        else:
+            dic[k]=[v]
+    resultado=sorted(dic.items())
+    return resultado
     """
     Retorne una lista de tuplas que asocien las columnas 0 y 1. Cada tupla
     contiene un valor posible de la columna 2 y una lista con todas las letras
@@ -25,3 +39,5 @@ def pregunta_07():
      (9, ['A', 'B', 'E', 'A', 'A', 'C'])]
 
     """
+if __name__ == "__main__":
+    print(pregunta_07())

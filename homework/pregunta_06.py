@@ -7,6 +7,21 @@ utilizar pandas, numpy o scipy.
 
 
 def pregunta_06():
+    x6=open('files/input/data.csv').readlines()
+    x6=[z.replace('\n',"") for z in x6]
+    x6=[z.split("\t") for z in x6]
+    x6=[z[4].split(',') for z in x6[0:]]
+    dic={}
+    for sublista in x6:
+        for item in sublista:
+            key,value = item.split(":")
+            value = int(value)
+            if key in dic:
+                dic[key].append(value)
+            else:
+                dic[key] = [value]
+    resultado=sorted([(k,min(v),max(v)) for k,v in dic.items()])
+    return resultado
     """
     La columna 5 codifica un diccionario donde cada cadena de tres letras
     corresponde a una clave y el valor despues del caracter `:` corresponde al
@@ -26,3 +41,5 @@ def pregunta_06():
      ('jjj', 5, 17)]
 
     """
+if __name__ == "__main__":
+    print(pregunta_06())
